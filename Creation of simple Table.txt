@@ -1,0 +1,216 @@
+
+
+Create an Employee table with empid, empname, job, deptno, salary, mgr_id, hiredate by adding not null for all the columns and unique for empid.
+
+insert 20 records to the table
+1. write the query to create and insert records
+	
+
+2. query to view all the records from the table
+	 
+3. query to count no. of records from the table
+	
+4. query to view only empid, empnam, job and salary of all the employees.
+	
+
+
+** not null is one of the constraints. The column value is mandatory at the time inserting a record
+** nunique the column can't have duplicate values
+
+**********************************************************************************************************************
+Answer:
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| employee           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use employee;
+Database changed
+mysql> CREATE TABLE EMPLOYEE (
+    ->     EMPID INT UNIQUE NOT NULL,
+    ->     EMPNAME VARCHAR(30) NOT NULL,
+    ->     JOB VARCHAR(20) NOT NULL,
+    ->     DEPTNO INT NOT NULL,
+    ->     SALARY FLOAT NOT NULL,
+    ->     MGR_ID INT NOT NULL,
+    ->     HIREDATE DATE NOT NULL
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| EMPID    | int         | NO   | PRI | NULL    |       |
+| EMPNAME  | varchar(30) | NO   |     | NULL    |       |
+| JOB      | varchar(20) | NO   |     | NULL    |       |
+| DEPTNO   | int         | NO   |     | NULL    |       |
+| SALARY   | float       | NO   |     | NULL    |       |
+| MGR_ID   | int         | NO   |     | NULL    |       |
+| HIREDATE | date        | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES
+    ->               (1001, 'UDAY', 'MANAGER', 1, 30000, 101, '2024-01-06');
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  INSERT INTO EMPLOYEE VALUES
+    ->             (1002, 'MANASA', 'EXCUTIVE', 2, 23000, 102, '2024-01-01');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  INSERT INTO EMPLOYEE VALUES
+    ->             (1003, 'BUNNY', 'SALES', 3, 24000, 103, '103-01-03');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  INSERT INTO EMPLOYEE VALUES
+    ->           (1004, 'POOJA', 'PURCHASE', 4, 20000, 104, '2024-01-05');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>
+mysql> INSERT INTO EMPLOYEE VALUES
+    ->           (1005, 'CHANDANA', 'SALES', 3, 24000, 105, '2024-01-06');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES
+    ->          (1006, 'RAHUL', 'EXCUTIVE', 2, 23000, 106, '2024-01-07');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>
+mysql> INSERT INTO EMPLOYEE VALUES
+    ->             (1007, 'RAMESH', 'MANAGER', 1, 30000, 107, '2024-01-02');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES
+    ->       (1008, 'RAMU', 'SALES', 3, 24000, 108, '2024-01-01');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  INSERT INTO EMPLOYEE VALUES
+    ->        (1009, 'ANIL', 'EXCUTIVE', 2, 23000, 109, '2024-01-02');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  INSERT INTO EMPLOYEE VALUES
+    ->         (1010, 'BAANVI', 'EXCUTIVE', 2, 23000, 110, '2024-01-06');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  INSERT INTO EMPLOYEE VALUES
+    ->          (1011, 'MANUSHA', 'SALES', 3, 24000, 111, '2024-01-04');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>
+mysql>
+mysql>  INSERT INTO EMPLOYEE VALUES
+    ->     (1012, 'SAMPTH', 'MANAGER', 1, 30000, 112, '2024-01-05');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>
+mysql>
+mysql>  INSERT INTO EMPLOYEE VALUES
+    ->         (1013, 'AKHILA', 'EXCUTIVE', 2, 23000, 113, '2024-01-08');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>
+mysql>  INSERT INTO EMPLOYEE VALUES
+    ->      (1014, 'ARUN', 'EXCUTIVE', 2, 23000, 114, '2024-01-02');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES
+    ->          (1015, 'BAANVI', 'PURCHASE', 4, 20000, 115, '2024-01-01');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>
+mysql>
+mysql>  INSERT INTO EMPLOYEE VALUES
+    ->      (1016, 'KUMAR', 'PURCHASE', 4, 20000, 116, '2024-01-03');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>
+mysql>  INSERT INTO EMPLOYEE VALUES
+    ->      (1017, 'BHANU', 'PURCHASE', 4, 20000, 117, '2024-01-03');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>
+mysql>  INSERT INTO EMPLOYEE VALUES
+    ->          (1018, 'MAHESH', 'SALES', 3, 24000, 118, '2024-01-05');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  INSERT INTO EMPLOYEE VALUES
+    ->          (1019, 'PHANI', 'EXCUTIVE', 2, 23000, 119, '2024-01-06');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  INSERT INTO EMPLOYEE VALUES
+    ->         (1020, 'SAI', 'MANAGER', 1, 30000, 120, '2024-01-06');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>
+mysql> SELECT * FROM EMPLOYEE;                                              //query to view all the records from the table
++-------+----------+----------+--------+--------+--------+------------+
+| EMPID | EMPNAME  | JOB      | DEPTNO | SALARY | MGR_ID | HIREDATE   |
++-------+----------+----------+--------+--------+--------+------------+
+|  1001 | UDAY     | MANAGER  |      1 |  30000 |    101 | 2024-01-06 |
+|  1002 | MANASA   | EXCUTIVE |      2 |  23000 |    102 | 2024-01-01 |
+|  1003 | BUNNY    | SALES    |      3 |  24000 |    103 | 0103-01-03 |
+|  1004 | POOJA    | PURCHASE |      4 |  20000 |    104 | 2024-01-05 |
+|  1005 | CHANDANA | SALES    |      3 |  24000 |    105 | 2024-01-06 |
+|  1006 | RAHUL    | EXCUTIVE |      2 |  23000 |    106 | 2024-01-07 |
+|  1007 | RAMESH   | MANAGER  |      1 |  30000 |    107 | 2024-01-02 |
+|  1008 | RAMU     | SALES    |      3 |  24000 |    108 | 2024-01-01 |
+|  1009 | ANIL     | EXCUTIVE |      2 |  23000 |    109 | 2024-01-02 |
+|  1010 | BAANVI   | EXCUTIVE |      2 |  23000 |    110 | 2024-01-06 |
+|  1011 | MANUSHA  | SALES    |      3 |  24000 |    111 | 2024-01-04 |
+|  1012 | SAMPTH   | MANAGER  |      1 |  30000 |    112 | 2024-01-05 |
+|  1013 | AKHILA   | EXCUTIVE |      2 |  23000 |    113 | 2024-01-08 |
+|  1014 | ARUN     | EXCUTIVE |      2 |  23000 |    114 | 2024-01-02 |
+|  1015 | BAANVI   | PURCHASE |      4 |  20000 |    115 | 2024-01-01 |
+|  1016 | KUMAR    | PURCHASE |      4 |  20000 |    116 | 2024-01-03 |
+|  1017 | BHANU    | PURCHASE |      4 |  20000 |    117 | 2024-01-03 |
+|  1018 | MAHESH   | SALES    |      3 |  24000 |    118 | 2024-01-05 |
+|  1019 | PHANI    | EXCUTIVE |      2 |  23000 |    119 | 2024-01-06 |
+|  1020 | SAI      | MANAGER  |      1 |  30000 |    120 | 2024-01-06 |
++-------+----------+----------+--------+--------+--------+------------+
+20 rows in set (0.00 sec)
+
+mysql> select count(*) from employee;                                       //query to count no. of records from the table
+
++----------+
+| count(*) |
++----------+
+|       20 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT EMPID, EMPNAME, JOB, SALARY FROM EMPLOYEE;              //query to view only empid, empnam, job and salary of all the employees.
++-------+----------+----------+--------+
+| EMPID | EMPNAME  | JOB      | SALARY |
++-------+----------+----------+--------+
+|  1001 | UDAY     | MANAGER  |  30000 |
+|  1002 | MANASA   | EXCUTIVE |  23000 |
+|  1003 | BUNNY    | SALES    |  24000 |
+|  1004 | POOJA    | PURCHASE |  20000 |
+|  1005 | CHANDANA | SALES    |  24000 |
+|  1006 | RAHUL    | EXCUTIVE |  23000 |
+|  1007 | RAMESH   | MANAGER  |  30000 |
+|  1008 | RAMU     | SALES    |  24000 |
+|  1009 | ANIL     | EXCUTIVE |  23000 |
+|  1010 | BAANVI   | EXCUTIVE |  23000 |
+|  1011 | MANUSHA  | SALES    |  24000 |
+|  1012 | SAMPTH   | MANAGER  |  30000 |
+|  1013 | AKHILA   | EXCUTIVE |  23000 |
+|  1014 | ARUN     | EXCUTIVE |  23000 |
+|  1015 | BAANVI   | PURCHASE |  20000 |
+|  1016 | KUMAR    | PURCHASE |  20000 |
+|  1017 | BHANU    | PURCHASE |  20000 |
+|  1018 | MAHESH   | SALES    |  24000 |
+|  1019 | PHANI    | EXCUTIVE |  23000 |
+|  1020 | SAI      | MANAGER  |  30000 |
++-------+----------+----------+--------+
+20 rows in set (0.00 sec)
+
