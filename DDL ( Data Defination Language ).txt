@@ -1,0 +1,192 @@
+LAB QUESTION:
+
+DDL exercise
+create a table 
+table name :  person
+table structure
+p_nid  int not null / unique
+p_name varchar(30)  not null
+p_address text
+
+1. insert 4 records to the table
+
+2. add a new column to the table  p_age int
+
+4. update the age column of existing records
+
+5. extended the p_name column size to 50
+
+6. add not null constraint for p_age, p_address columns
+
+***************************************************************************
+
+ANSWER:
+
+ show databases;
++--------------------+
+| Database           |
++--------------------+
+| employee           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| person             |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use person;
+Database changed
+mysql> create table person(p_nid  int not null unique,
+    -> p_name varchar(30)  not null,
+    -> p_address text);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc person;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| p_nid     | int         | NO   | PRI | NULL    |       |
+| p_name    | varchar(30) | NO   |     | NULL    |       |
+| p_address | text        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> INSERT INTO PERSON VALUES
+    ->                 (1, 'UDAY', 'HYDERABAD');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO PERSON VALUES
+    ->                 (2, 'RAKESH', 'SIDDIPET');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO PERSON VALUES
+    ->                 (3, 'SAI', 'KARIMNAGAR');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO PERSON VALUES
+    ->                 (4, 'KRISHNA', 'CHERIAL');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO PERSON VALUES
+    ->                 (5, 'KIRAN', 'AKUNOOR');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM PERSON;
++-------+---------+------------+
+| p_nid | p_name  | p_address  |
++-------+---------+------------+
+|     1 | UDAY    | HYDERABAD  |
+|     2 | RAKESH  | SIDDIPET   |
+|     3 | SAI     | KARIMNAGAR |
+|     4 | KRISHNA | CHERIAL    |
+|     5 | KIRAN   | AKUNOOR    |
++-------+---------+------------+
+5 rows in set (0.00 sec)
+**********************************************************
+
+mysql> ALTER TABLE PERSON  ADD(p_age int);   // add a new column to the table  p_age int
+
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM PERSON;
++-------+---------+------------+-------+
+| p_nid | p_name  | p_address  | p_age |
++-------+---------+------------+-------+
+|     1 | UDAY    | HYDERABAD  |  NULL |
+|     2 | RAKESH  | SIDDIPET   |  NULL |
+|     3 | SAI     | KARIMNAGAR |  NULL |
+|     4 | KRISHNA | CHERIAL    |  NULL |
+|     5 | KIRAN   | AKUNOOR    |  NULL |
++-------+---------+------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE PERSON SET P_AGE = 23 WHERE P_NID = 1;           // update the age column of existing records
+
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE PERSON SET P_AGE = 22 WHERE P_NID = 1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE PERSON SET P_AGE = 23 WHERE P_NID = 2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE PERSON SET P_AGE = 21 WHERE P_NID = 3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE PERSON SET P_AGE = 25 WHERE P_NID = 4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE PERSON SET P_AGE = 20 WHERE P_NID = 5;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM PERSON;
++-------+---------+------------+-------+
+| p_nid | p_name  | p_address  | p_age |
++-------+---------+------------+-------+
+|     1 | UDAY    | HYDERABAD  |    22 |
+|     2 | RAKESH  | SIDDIPET   |    23 |
+|     3 | SAI     | KARIMNAGAR |    21 |
+|     4 | KRISHNA | CHERIAL    |    25 |
+|     5 | KIRAN   | AKUNOOR    |    20 |
++-------+---------+------------+-------+
+5 rows in set (0.00 sec)
+ ***************************************************
+mysql> ALTER TABLE PERSON
+    -> MODIFY p_name VARCHAR(50);                       //extended the p_name column size to 50
+
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+mysql> desc person;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| p_nid     | int         | NO   | PRI | NULL    |       |
+| p_name    | varchar(50) | YES  |     | NULL    |       |
+| p_address | text        | YES  |     | NULL    |       |
+| p_age     | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+*********************************************************
+mysql> ALTER TABLE PERSON
+    -> MODIFY p_age INT NOT NULL;                    //add not null constraint for p_age, p_address columns
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> ALTER TABLE PERSON
+    -> MODIFY p_address text NOT NULL;
+Query OK, 5 rows affected (0.04 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql>  DESC PERSON;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| p_nid     | int         | NO   | PRI | NULL    |       |
+| p_name    | varchar(50) | YES  |     | NULL    |       |
+| p_address | text        | NO   |     | NULL    |       |
+| p_age     | int         | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Person;
++-------+---------+------------+-------+
+| p_nid | p_name  | p_address  | p_age |
++-------+---------+------------+-------+
+|     1 | UDAY    | HYDERABAD  |    22 |
+|     2 | RAKESH  | SIDDIPET   |    23 |
+|     3 | SAI     | KARIMNAGAR |    21 |
+|     4 | KRISHNA | CHERIAL    |    25 |
+|     5 | KIRAN   | AKUNOOR    |    20 |
++-------+---------+------------+-------+
+5 rows in set (0.00 sec)
