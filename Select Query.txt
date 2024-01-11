@@ -1,0 +1,276 @@
+
+
+1)	Retrieve all the rows and columns from the Emp table.
+2)	Retrieve employee name and job from the Emp table.
+3)	Retrieve employee name as name, mgr as manager id from the Emp table.
+4)	Retrieve the jobs present in the Emp table.
+5)	Display the name, job, salary and net salary (salary + commission) of all managers
+6)	Display the name, hire date, salary of all employees belonging to either department 10 or 20.
+7)	Display the rows of all employees whose name contains exactly 5 characters.
+8)	Display the employee numbers, jobs, names, and salaries of all employees whose name contains ‘LL’ in them.
+9)	Display the records of all employees who have joined in the year 1981.
+10)	Display the records of all employees arranged according to job wise in descending order and according to names in ascending order.
+
+
+
+
+
+
+mysql> create database emp;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| course             |
+| emp                |
+| employee           |
+| enrollment         |
+| information_schema |
+| instructor         |
+| mysql              |
+| performance_schema |
+| person             |
+| student            |
+| sys                |
++--------------------+
+11 rows in set (0.01 sec)
+
+mysql> use emp;
+Database changed
+mysql> create table emp(EMPNO int, ENAME text, JOB text  ,MGR int,  HIREDATE text , SAL  int, COMM double,  DEPTNO int);
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc emp;
++----------+--------+------+-----+---------+-------+
+| Field    | Type   | Null | Key | Default | Extra |
++----------+--------+------+-----+---------+-------+
+| EMPNO    | int    | YES  |     | NULL    |       |
+| ENAME    | text   | YES  |     | NULL    |       |
+| JOB      | text   | YES  |     | NULL    |       |
+| MGR      | int    | YES  |     | NULL    |       |
+| HIREDATE | text   | YES  |     | NULL    |       |
+| SAL      | int    | YES  |     | NULL    |       |
+| COMM     | double | YES  |     | NULL    |       |
+| DEPTNO   | int    | YES  |     | NULL    |       |
++----------+--------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> INSERT INTO emp  VALUES
+    -> (7369,'SMITH','CLERK', 7902,'1980-12-17', 800 ,  80 ,20),
+    -> (7499,'ALLEN', 'SALESMAN',  7698 , '1981-10-02' , 1600  ,  160  ,   30 ),
+    -> (7521,'WARD'  , 'SALESMAN',   7698,  '1981-02-02',  1250 ,  125 ,     30 ),
+    -> (7566,'JONES',  'MANAGER',    7839,  '1981-01-08' , 2975, 297.5 , 20),
+    -> (7654,'MARTIN ', 'SALESMAN',   7698,'1981-09-28',  1250  ,  125 , 30),
+    -> (7698,'BLAKE',   'MANAGER',   7839, '1981-05-01',  2850 ,   285,  30),
+    -> (7782,'CLARK',   'MANAGER' ,   7839,  '1981-06-08' , 2450 ,   245 , 10),
+    -> (7788, 'SCOTT',   'ANALYST',    7566,  '1982-12-09',  3000,    300 , 20),
+    -> (7839, 'KING',    'PRESIDENT',  NULL , '1981-09-17' , 5000,   500 ,10 ),
+    -> (7876, 'ADAMS',  'CLERK',  7788,'1983-01-12', 1100,   110,  20),
+    -> (7900,  'JAMES', 'CLERK',     7698  ,'1981-12-03',   950 ,    95 ,  30 ),
+    -> (7902,  'FORD',  'ANALYST',    7566  ,'1981-12-03' , 3000 ,   300,  20 ),
+    -> (7934, 'MILLER', 'CLERK',      7782 , '1982-01-23' , 1300  ,  130 ,     10  );
+Query OK, 13 rows affected (0.01 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql>
+******************************************************************************
+1)	Retrieve all the rows and columns from the Emp table.
+
+mysql> select * from emp;                                                               // Retrieve all the rows and columns from the Emp table.
++-------+---------+-----------+------+------------+------+-------+--------+
+| EMPNO | ENAME   | JOB       | MGR  | HIREDATE   | SAL  | COMM  | DEPTNO |
++-------+---------+-----------+------+------------+------+-------+--------+
+|  7369 | SMITH   | CLERK     | 7902 | 1980-12-17 |  800 |    80 |     20 |
+|  7499 | ALLEN   | SALESMAN  | 7698 | 1981-10-02 | 1600 |   160 |     30 |
+|  7521 | WARD    | SALESMAN  | 7698 | 1981-02-02 | 1250 |   125 |     30 |
+|  7566 | JONES   | MANAGER   | 7839 | 1981-01-08 | 2975 | 297.5 |     20 |
+|  7654 | MARTIN  | SALESMAN  | 7698 | 1981-09-28 | 1250 |   125 |     30 |
+|  7698 | BLAKE   | MANAGER   | 7839 | 1981-05-01 | 2850 |   285 |     30 |
+|  7782 | CLARK   | MANAGER   | 7839 | 1981-06-08 | 2450 |   245 |     10 |
+|  7788 | SCOTT   | ANALYST   | 7566 | 1982-12-09 | 3000 |   300 |     20 |
+|  7839 | KING    | PRESIDENT | NULL | 1981-09-17 | 5000 |   500 |     10 |
+|  7876 | ADAMS   | CLERK     | 7788 | 1983-01-12 | 1100 |   110 |     20 |
+|  7900 | JAMES   | CLERK     | 7698 | 1981-12-03 |  950 |    95 |     30 |
+|  7902 | FORD    | ANALYST   | 7566 | 1981-12-03 | 3000 |   300 |     20 |
+|  7934 | MILLER  | CLERK     | 7782 | 1982-01-23 | 1300 |   130 |     10 |
++-------+---------+-----------+------+------------+------+-------+--------+
+13 rows in set (0.00 sec)
+
+**************************************************************************
+2)	Retrieve employee name and job from the Emp table.
+
+
+mysql> select ename,job from emp;
++---------+-----------+
+| ename   | job       |
++---------+-----------+
+| SMITH   | CLERK     |
+| ALLEN   | SALESMAN  |
+| WARD    | SALESMAN  |
+| JONES   | MANAGER   |
+| MARTIN  | SALESMAN  |
+| BLAKE   | MANAGER   |
+| CLARK   | MANAGER   |
+| SCOTT   | ANALYST   |
+| KING    | PRESIDENT |
+| ADAMS   | CLERK     |
+| JAMES   | CLERK     |
+| FORD    | ANALYST   |
+| MILLER  | CLERK     |
++---------+-----------+
+13 rows in set (0.00 sec)
+
+*********************************************************************
+
+3)	Retrieve employee name as name, mgr as manager id from the Emp table.
+
+mysql> SELECT ENAME AS name, MGR AS manager_id FROM Emp;
++---------+------------+
+| name    | manager_id |
++---------+------------+
+| SMITH   |       7902 |
+| ALLEN   |       7698 |
+| WARD    |       7698 |
+| JONES   |       7839 |
+| MARTIN  |       7698 |
+| BLAKE   |       7839 |
+| CLARK   |       7839 |
+| SCOTT   |       7566 |
+| KING    |       NULL |
+| ADAMS   |       7788 |
+| JAMES   |       7698 |
+| FORD    |       7566 |
+| MILLER  |       7782 |
++---------+------------+
+13 rows in set (0.00 sec)
+***************************************************************
+
+4)	Retrieve the jobs present in the Emp table.
+
+
+mysql> select distinct job from emp;
++-----------+
+| job       |
++-----------+
+| CLERK     |
+| SALESMAN  |
+| MANAGER   |
+| ANALYST   |
+| PRESIDENT |
++-----------+
+5 rows in set (0.00 sec)
+
+****************************************************************
+5)	Display the name, job, salary and net salary (salary + commission) of all managers
+
+
+mysql> select ename,job,sal,(sal+comm) as netsalary from emp where job = 'manager';
++-------+---------+------+-----------+
+| ename | job     | sal  | netsalary |
++-------+---------+------+-----------+
+| JONES | MANAGER | 2975 |    3272.5 |
+| BLAKE | MANAGER | 2850 |      3135 |
+| CLARK | MANAGER | 2450 |      2695 |
++-------+---------+------+-----------+
+3 rows in set (0.00 sec)
+
+*************************************************************************
+6)	Display the name, hire date, salary of all employees belonging to either department 10 or 20.
+
+mysql> SELECT ENAME, HIREDATE, SAL FROM EMP WHERE DEPTNO = '10' OR DEPTNO = '20';
++--------+------------+------+
+| ENAME  | HIREDATE   | SAL  |
++--------+------------+------+
+| SMITH  | 1980-12-17 |  800 |
+| JONES  | 1981-01-08 | 2975 |
+| CLARK  | 1981-06-08 | 2450 |
+| SCOTT  | 1982-12-09 | 3000 |
+| KING   | 1981-09-17 | 5000 |
+| ADAMS  | 1983-01-12 | 1100 |
+| FORD   | 1981-12-03 | 3000 |
+| MILLER | 1982-01-23 | 1300 |
++--------+------------+------+
+8 rows in set (0.00 sec)
+
+
+*************************************************************************
+7)	Display the rows of all employees whose name contains exactly 5 characters.
+
+
+mysql> select * from emp where ename like'_____';
++-------+-------+----------+------+------------+------+-------+--------+
+| EMPNO | ENAME | JOB      | MGR  | HIREDATE   | SAL  | COMM  | DEPTNO |
++-------+-------+----------+------+------------+------+-------+--------+
+|  7369 | SMITH | CLERK    | 7902 | 1980-12-17 |  800 |    80 |     20 |
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-10-02 | 1600 |   160 |     30 |
+|  7566 | JONES | MANAGER  | 7839 | 1981-01-08 | 2975 | 297.5 |     20 |
+|  7698 | BLAKE | MANAGER  | 7839 | 1981-05-01 | 2850 |   285 |     30 |
+|  7782 | CLARK | MANAGER  | 7839 | 1981-06-08 | 2450 |   245 |     10 |
+|  7788 | SCOTT | ANALYST  | 7566 | 1982-12-09 | 3000 |   300 |     20 |
+|  7876 | ADAMS | CLERK    | 7788 | 1983-01-12 | 1100 |   110 |     20 |
+|  7900 | JAMES | CLERK    | 7698 | 1981-12-03 |  950 |    95 |     30 |
++-------+-------+----------+------+------------+------+-------+--------+
+8 rows in set (0.00 sec)
+
+*******************************************************************************
+8)	Display the employee numbers, jobs, names, and salaries of all employees whose name contains ‘LL’ in them.
+
+mysql> select ename,job,sal from emp where ename like '%LL%';
++--------+----------+------+
+| ename  | job      | sal  |
++--------+----------+------+
+| ALLEN  | SALESMAN | 1600 |
+| MILLER | CLERK    | 1300 |
++--------+----------+------+
+2 rows in set (0.00 sec)
+
+
+
+****************************************************************************
+
+
+9)	Display the records of all employees who have joined in the year 1981.
+
+
+mysql>  select * from emp where  HIREDATE = 1981;
++-------+---------+-----------+------+------------+------+-------+--------+
+| EMPNO | ENAME   | JOB       | MGR  | HIREDATE   | SAL  | COMM  | DEPTNO |
++-------+---------+-----------+------+------------+------+-------+--------+
+|  7499 | ALLEN   | SALESMAN  | 7698 | 1981-10-02 | 1600 |   160 |     30 |
+|  7521 | WARD    | SALESMAN  | 7698 | 1981-02-02 | 1250 |   125 |     30 |
+|  7566 | JONES   | MANAGER   | 7839 | 1981-01-08 | 2975 | 297.5 |     20 |
+|  7654 | MARTIN  | SALESMAN  | 7698 | 1981-09-28 | 1250 |   125 |     30 |
+|  7698 | BLAKE   | MANAGER   | 7839 | 1981-05-01 | 2850 |   285 |     30 |
+|  7782 | CLARK   | MANAGER   | 7839 | 1981-06-08 | 2450 |   245 |     10 |
+|  7839 | KING    | PRESIDENT | NULL | 1981-09-17 | 5000 |   500 |     10 |
+|  7900 | JAMES   | CLERK     | 7698 | 1981-12-03 |  950 |    95 |     30 |
+|  7902 | FORD    | ANALYST   | 7566 | 1981-12-03 | 3000 |   300 |     20 |
++-------+---------+-----------+------+------------+------+-------+--------+
+9 rows in set (0.00 sec)
+
+**************************************************************************************
+
+10)	Display the records of all employees arranged according to job wise in descending order and according to names in ascending order.
+
+mysql> SELECT * FROM EMP ORDER BY JOB DESC,ENAME ASC;
++-------+---------+-----------+------+------------+------+-------+--------+
+| EMPNO | ENAME   | JOB       | MGR  | HIREDATE   | SAL  | COMM  | DEPTNO |
++-------+---------+-----------+------+------------+------+-------+--------+
+|  7499 | ALLEN   | SALESMAN  | 7698 | 1981-10-02 | 1600 |   160 |     30 |
+|  7654 | MARTIN  | SALESMAN  | 7698 | 1981-09-28 | 1250 |   125 |     30 |
+|  7521 | WARD    | SALESMAN  | 7698 | 1981-02-02 | 1250 |   125 |     30 |
+|  7839 | KING    | PRESIDENT | NULL | 1981-09-17 | 5000 |   500 |     10 |
+|  7698 | BLAKE   | MANAGER   | 7839 | 1981-05-01 | 2850 |   285 |     30 |
+|  7782 | CLARK   | MANAGER   | 7839 | 1981-06-08 | 2450 |   245 |     10 |
+|  7566 | JONES   | MANAGER   | 7839 | 1981-01-08 | 2975 | 297.5 |     20 |
+|  7876 | ADAMS   | CLERK     | 7788 | 1983-01-12 | 1100 |   110 |     20 |
+|  7900 | JAMES   | CLERK     | 7698 | 1981-12-03 |  950 |    95 |     30 |
+|  7934 | MILLER  | CLERK     | 7782 | 1982-01-23 | 1300 |   130 |     10 |
+|  7369 | SMITH   | CLERK     | 7902 | 1980-12-17 |  800 |    80 |     20 |
+|  7902 | FORD    | ANALYST   | 7566 | 1981-12-03 | 3000 |   300 |     20 |
+|  7788 | SCOTT   | ANALYST   | 7566 | 1982-12-09 | 3000 |   300 |     20 |
++-------+---------+-----------+------+------------+------+-------+--------+
+13 rows in set (0.00 sec)
